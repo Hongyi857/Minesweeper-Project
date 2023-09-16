@@ -76,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
     public void onClickTV(View view){
         if(endgame){
             showresult();
-
         }
 
         TextView tv = (TextView) view;
