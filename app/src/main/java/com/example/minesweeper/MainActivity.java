@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     protected ArrayList<TextView> cells;
     protected Gamer game = new Gamer();
-    protected boolean flagmode = true;
+    protected boolean flagmode = false;
     protected boolean mined = false;
     private static final int NUM_MINES = 4;
     @Override
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
                 grid.addView(tv, lp);
 
                 cells.add(tv);
-
+                game.addcells(cells);
             }
         }
         game.setmines(cells.size(),NUM_MINES);
@@ -85,7 +85,11 @@ public class MainActivity extends AppCompatActivity {
 
         }
         else{
-            game.dig(n);
+            //game.showmine(); for debugging
+            boolean safe = game.dig(n);
+            if(!safe){
+                bomb();
+            }
         }
         /*
         if (tv.getCurrentTextColor() == Color.GRAY) {
@@ -96,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
             tv.setBackgroundColor(Color.LTGRAY);
         }*/
     }
-    protected void dig(int r, int c){
+    protected void bomb(){
 
     }
 
