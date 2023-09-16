@@ -9,9 +9,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
     protected boolean flagmode = false;
     protected boolean endgame = false;
     private static final int NUM_MINES = 4;
+    Chronometer chronometer;
+
+    double time = 0.0;
 
     private int t = 5;
     @Override
@@ -49,7 +55,10 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         game.setmines(cells.size(),NUM_MINES);
+        chronometer = (Chronometer) findViewById(R.id.Chronometer);
+        chronometer.start();
     }
+
 
     public void changemode(View view){
         if(flagmode){
@@ -109,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
         }*/
     }
     protected void bomb(){
+        chronometer.stop();
         ArrayList<Integer> mines = game.getmines();
         for (int i = 0; i < mines.size(); i++){
             int idx = mines.get(i);

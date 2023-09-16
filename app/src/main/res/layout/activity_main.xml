@@ -31,4 +31,52 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/minegrid" />
+
+    <TextView
+        android:id="@+id/flag_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:text="@string/flag"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/minegrid"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/flagnum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="80dp"
+        android:text="@string/flagnum"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/minegrid"
+        app:layout_constraintEnd_toStartOf="@+id/timer_icon"
+        app:layout_constraintStart_toEndOf="@+id/flag_icon"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/timer_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:text="@string/clock"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/minegrid"
+        app:layout_constraintStart_toEndOf="@+id/flagnum"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Chronometer
+        android:id="@+id/Chronometer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/minegrid"
+        app:layout_constraintStart_toEndOf="@+id/timer_icon"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </Chronometer>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
