@@ -1,11 +1,13 @@
 package com.example.minesweeper;
 
+
+
 import android.graphics.Color;
 import android.widget.TextView;
 
-import java.lang.reflect.Array;
+
 import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Random;
 
 public class Gamer {
@@ -41,13 +43,17 @@ public class Gamer {
         if(digged.contains(n)){
             return true;
         }
+        if(flags.contains(n)){
+            return true;
+        }
         if(mines.contains(n)){
+
             return false;
         }
         digged.add(n);
         int count = checkmine(n);
+        cells.get(n).setBackgroundColor(Color.LTGRAY);
         if (count == 0){
-            cells.get(n).setBackgroundColor(Color.LTGRAY);
             if(n % 10 < 9){
                 dig(n+1);
             }
@@ -57,16 +63,16 @@ public class Gamer {
             if(n / 10 < 11){
                 dig(n+10);
             }
-            if(n % 10 > 0){
+            if(n % 10 > 0 ){
                 dig(n-10);
             }
-            if(n % 10 < 9 && n / 10 > 0){
+            if(n % 10 < 9 && n / 10 > 0 ){
                 dig(n-9);
             }
             if(n % 10 >0 && n / 10 > 0){
                 dig(n-11);
             }
-            if(n % 10 > 0 && n / 10 < 11){
+            if(n % 10 > 0 && n / 10 < 11 ){
                 dig(n+9);
             }
             if(n % 10 < 9 && n / 10 < 11){
@@ -76,7 +82,6 @@ public class Gamer {
             dig(n-10);
         }
         else{
-            cells.get(n).setBackgroundColor(Color.LTGRAY);
             cells.get(n).setText(""+count);
         }
         return true;
@@ -110,5 +115,16 @@ public class Gamer {
         }
         return count;
     }
+
+    protected ArrayList<Integer> getmines(){
+        return mines;
+    }
+
+    protected void reset(){
+        mines.clear();
+        digged.clear();
+        flags.clear();
+    }
+
 
 }

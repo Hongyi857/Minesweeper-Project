@@ -20,4 +20,15 @@
         app:layout_constraintTop_toTopOf="parent">
 
     </androidx.gridlayout.widget.GridLayout>
+
+    <Button
+        android:id="@+id/change_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:onClick="changemode"
+        android:text="@string/pick"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/minegrid" />
 </androidx.constraintlayout.widget.ConstraintLayout>
