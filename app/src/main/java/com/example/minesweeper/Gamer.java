@@ -126,5 +126,23 @@ public class Gamer {
         flags.clear();
     }
 
+    protected boolean checkwin(){
+        if(flags.size() != mines.size()){
+            return false;
+        }
+        for (Integer element : flags) {
+            if (!mines.contains(element)) {
+                return false;
+            }
+        }
+        if(digged.size() + flags.size() != cells.size()){
+            return false;
 
+        }
+        return true;
+    }
+
+    protected int currentflag(){
+        return flags.size();
+    }
 }

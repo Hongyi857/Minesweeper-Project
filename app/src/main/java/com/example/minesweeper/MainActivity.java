@@ -6,6 +6,7 @@ import androidx.gridlayout.widget.GridLayout;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -25,9 +26,10 @@ public class MainActivity extends AppCompatActivity {
     private static final int NUM_MINES = 4;
     Chronometer chronometer;
 
+    protected boolean win = true;
+
     double time = 0.0;
 
-    private int t = 5;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         }
         game.setmines(cells.size(),NUM_MINES);
         chronometer = (Chronometer) findViewById(R.id.Chronometer);
+        chronometer.setBase(SystemClock.elapsedRealtime());
         chronometer.start();
     }
 
@@ -91,14 +94,17 @@ public class MainActivity extends AppCompatActivity {
         int n = findIndexOfCellTextView(tv);
 
         if(flagmode){
+            TextView flagnum = findViewById(R.id.flagnum);
             if(game.flags.contains(n)){ //if there is already a flag, remove the flag.
                 game.flags.remove((Integer) n);
                 tv.setText("");
+                flagnum.setText(""+(4-game.currentflag()));
             } else if (game.digged.contains(n)){ //if it is digged, don't place a flag
             } else { //if it is not flagged yet, add a flag
                 String flag_icon = getString(R.string.flag);
                 tv.setText(flag_icon);
                 game.flags.add(n);
+                flagnum.setText(""+(4-game.currentflag()));
             }
         }
         else{
@@ -107,6 +113,10 @@ public class MainActivity extends AppCompatActivity {
             if(!safe){
                 bomb();
             }
+        }
+        win = game.checkwin();
+        if(win){
+            bomb();
         }
         /*
         if (tv.getCurrentTextColor() == Color.GRAY) {
@@ -119,6 +129,9 @@ public class MainActivity extends AppCompatActivity {
     }
     protected void bomb(){
         chronometer.stop();
+        long elapsedMillis = SystemClock.elapsedRealtime() - chronometer.getBase();
+        time = elapsedMillis;
+
         ArrayList<Integer> mines = game.getmines();
         for (int i = 0; i < mines.size(); i++){
             int idx = mines.get(i);
@@ -132,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void showresult(){
         Intent result = new Intent(MainActivity.this,Result_Page.class);
-        result.putExtra("Time",t);
+        result.putExtra("Time",time);
         startActivity(result);
     }
 
