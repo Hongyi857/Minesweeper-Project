@@ -120,12 +120,6 @@ public class Gamer {
         return mines;
     }
 
-    protected void reset(){
-        mines.clear();
-        digged.clear();
-        flags.clear();
-    }
-
     protected boolean checkwin(){
         if(flags.size() != mines.size()){
             return false;
