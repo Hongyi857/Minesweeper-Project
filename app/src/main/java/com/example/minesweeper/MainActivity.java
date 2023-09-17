@@ -146,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
     public void showresult(){
         Intent result = new Intent(MainActivity.this,Result_Page.class);
         result.putExtra("Time",time);
+        result.putExtra("Result",win);
         startActivity(result);
     }
 
